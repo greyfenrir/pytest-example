@@ -1,15 +1,24 @@
 from selenium import webdriver
 import pytest
+import time
 
 # creds
 API_KEY = ''
 API_SECRET = ''
 base = 'a.blazemeter.com'
+API_KEY = '63fbd156fce37fe333752284'
+API_SECRET = 'cde938e138374324fb9cdd6c95aa547af6247ec43654fbf1058a1cf211c3d269266931f6'
+base = 'bza-199-artem-artem.blazemeter.net'
 
+BUILD_ID = int(time.time())
 
 ### BlazeGrid capabilites
 desired_capabilities = {
+    #'browserName': 'chrome',
+    'blazemeter.locationId': 'harbor-5ca1d0f356e140733411a936',
     'browserName': 'chrome',
+    'blazemeter.projectId': '1',
+    'blazemeter.buildId': BUILD_ID,
 }
 
 

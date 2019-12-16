@@ -1,13 +1,16 @@
 import pytest
 from selenium.common.exceptions import NoSuchElementException
 
+import os
+
+ADDR1 = os.environ.get('ADDR1', 'addr1 not found')
 
 @pytest.mark.DemoEasy
 # Find element
 class TestGlobal(object):
     # Find Element By ID: [Please enter your Message] input field
     def test_id(self, driver):
-        driver.get("https://www.seleniumeasy.com/test/basic-first-form-demo.html")
+        driver.get(ADDR1)
         driver.find_element_by_id("user-message").click()
 
     # Find Element By Name

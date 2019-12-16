@@ -1,11 +1,14 @@
 from selenium.webdriver.support.ui import Select
 import pytest
 
+import os
+
+ADDR2 = os.environ.get('ADDR2', 'addr2 not found')
 
 @pytest.mark.DemoGrid
 class TestDemoGrid(object):
     def test_passed(self, driver):
-        driver.get("http://blazedemo.com")
+        driver.get(ADDR2)
         driver.find_element_by_name("toPort").click()
         select = Select(driver.find_element_by_name("toPort"))
         select.select_by_visible_text("Berlin")
