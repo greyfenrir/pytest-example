@@ -26,7 +26,6 @@ def driver(request):
     }
     driver = webdriver.Remote(command_executor=blazegrid_url, desired_capabilities=desired_capabilities)
     yield driver
-    driver.close()
     driver.quit()
 
 
