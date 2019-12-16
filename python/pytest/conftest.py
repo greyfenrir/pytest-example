@@ -13,18 +13,17 @@ base = 'bza-199-artem-artem.blazemeter.net'
 BUILD_ID = int(time.time())
 
 ### BlazeGrid capabilites
-desired_capabilities = {
-    #'browserName': 'chrome',
-    'blazemeter.locationId': 'harbor-5ca1d0f356e140733411a936',
-    'browserName': 'chrome',
-    'blazemeter.projectId': '1',
-    'blazemeter.buildId': BUILD_ID,
-}
-
 
 @pytest.fixture(scope="module")
-def driver():
+def driver(request):
     blazegrid_url = 'https://{}:{}@{}/api/v4/grid/wd/hub'.format(API_KEY, API_SECRET, base)
+    desired_capabilities = {
+        # 'browserName': 'chrome',
+        'blazemeter.locationId': 'harbor-5ca1d0f356e140733411a936',
+        'browserName': 'chrome',
+        'blazemeter.projectId': '1',
+        'blazemeter.testName': request.fspath.purebasename,
+    }
     driver = webdriver.Remote(command_executor=blazegrid_url, desired_capabilities=desired_capabilities)
     yield driver
     driver.close()
